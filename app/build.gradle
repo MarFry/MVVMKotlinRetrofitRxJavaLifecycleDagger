@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -16,8 +18,13 @@ android {
     }
     buildTypes {
         release {
+            buildConfigField 'String', 'URL', '"https://restcountries.eu/rest/v2/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            buildConfigField 'String', 'URL', '"https://restcountries.eu/rest/v2/"'
         }
     }
 }
@@ -31,8 +38,8 @@ dependencies {
 
 //    Dagger
     implementation "com.google.dagger:dagger:$dagger_version"
-    implementation "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
 
 //    Retrofit
@@ -43,15 +50,16 @@ dependencies {
 //    OkHttp
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
+//    Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
+
 //    Rx
     implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
     implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
 
 //    LeakCanary
     implementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
-    implementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
-
-
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
