@@ -3,6 +3,7 @@ package com.example.myfirstappnrollapp
 import android.app.Activity
 import android.app.Application
 import com.example.myfirstappnrollapp.di.component.DaggerAppComponent
+import com.example.myfirstappnrollapp.di.module.AppModule
 import com.example.myfirstappnrollapp.di.module.NetModule
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
@@ -25,9 +26,9 @@ class App : Application(), HasActivityInjector {
         @Suppress("DEPRECATION")
         DaggerAppComponent.builder()
             .netModule(NetModule(BuildConfig.URL))
+            .appModule(AppModule(this))
             .build()
             .inject(this)
-
     }
 
     private fun initLeakCanary() {
