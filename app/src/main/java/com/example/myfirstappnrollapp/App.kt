@@ -23,7 +23,6 @@ class App : Application(), HasActivityInjector {
     }
 
     private fun inject() {
-        @Suppress("DEPRECATION")
         DaggerAppComponent.builder()
             .netModule(NetModule(BuildConfig.URL))
             .appModule(AppModule(this))

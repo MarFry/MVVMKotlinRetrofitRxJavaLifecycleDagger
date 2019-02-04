@@ -52,7 +52,6 @@ class CountryActivity : AppCompatActivity() {
             Observer<List<Country>> {
                 if (it != null) {
                     countryAdapter.setItems(it)
-//                    countryAdapter.notifyDataSetChanged()
                     countryRecyclerView.adapter = countryAdapter
                 }
             })

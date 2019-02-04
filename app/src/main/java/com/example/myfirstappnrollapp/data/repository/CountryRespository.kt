@@ -1,16 +1,14 @@
 package com.example.myfirstappnrollapp.data.repository
-
-import androidx.lifecycle.ViewModel
 import com.example.myfirstappnrollapp.data.model.Country
 import com.example.myfirstappnrollapp.data.remote.ApiInterface
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import javax.inject.Inject
 
-class CountryRepository @Inject constructor(private val apiInterface: ApiInterface) : ViewModel() {
+class CountryRepository @Inject constructor(private val apiInterface: ApiInterface)  {
 
-    fun getCountries(): Observable<List<Country>> {
+    fun getCountries(): Flowable<List<Country>> {
 
-        var singleFromApi: Observable<List<Country>>? = null
+        val singleFromApi: Flowable<List<Country>>?
 
         singleFromApi = getCountriesFromApi()
 
