@@ -10,8 +10,10 @@ buildscript {
     ext.rx_kotlin_version = '2.2.0'
     ext.moshi_version = '1.6.0'
     ext.moshi_converter_version = '2.0.0-beta3'
-    ext.lifecycle = '1.1.1'
-    ext.lifecycle_compiler = '1.1.1'
+    ext.lifecycle = '2.1.0-alpha02'
+    ext.lifecycle_compiler = '2.0.0-beta01'
+    ext.recycler_view_version = '1.0.0'
+    ext.card_view_version = '1.0.0'
 
     repositories {
         google()
