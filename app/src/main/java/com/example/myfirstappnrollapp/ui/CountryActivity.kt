@@ -2,6 +2,7 @@ package com.example.myfirstappnrollapp.ui
 
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -32,6 +33,7 @@ class CountryActivity : AppCompatActivity() {
         loadData()
         loadDataResult()
         loadDataError()
+        loadDataLoader()
     }
 
     private fun initRecyclerView() {
@@ -64,6 +66,14 @@ class CountryActivity : AppCompatActivity() {
 
                 }
             })
+    }
+
+    private fun loadDataLoader() {
+        countryViewModel.countriesLoader().observe(this,
+            Observer<Boolean> {
+                if (!it) progressBar.visibility = View.GONE
+            }
+        )
     }
 
     override fun onDestroy() {

@@ -34,7 +34,7 @@ class CountryViewModel @Inject constructor(private val countryRepository: Countr
 
         resourceSubscriber = object : ResourceSubscriber<List<Country>>() {
             override fun onComplete() {
-
+                countriesLoader.postValue(true)
             }
 
             override fun onNext(countires: List<Country>) {
@@ -44,7 +44,7 @@ class CountryViewModel @Inject constructor(private val countryRepository: Countr
 
             override fun onError(e: Throwable) {
                 countriesError.postValue(e.message)
-                countriesLoader.postValue(false)
+                countriesLoader.postValue(true)
             }
         }
 
