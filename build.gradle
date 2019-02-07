@@ -14,6 +14,8 @@ buildscript {
     ext.lifecycle_compiler = '2.0.0-beta01'
     ext.recycler_view_version = '1.0.0'
     ext.card_view_version = '1.0.0'
+    ext.room_version = '1.1.1'
+    ext.room_runtime_version = '1.1.1-rc1'
 
     repositories {
         google()

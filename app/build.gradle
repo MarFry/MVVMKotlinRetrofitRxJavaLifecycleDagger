@@ -5,7 +5,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
-
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -19,12 +18,14 @@ android {
     buildTypes {
         release {
             buildConfigField 'String', 'URL', '"https://restcountries.eu/rest/v2/"'
+            buildConfigField 'String', 'DatabaseName', '"countries_db"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug {
             buildConfigField 'String', 'URL', '"https://restcountries.eu/rest/v2/"'
+            buildConfigField 'String', 'DATABASE_NAME', '"countries_db"'
         }
     }
 }
@@ -47,14 +48,13 @@ dependencies {
 //    Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
 
 //    OkHttp
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
 
 //    Moshi
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
-    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
 
 //    Rx
     implementation "io.reactivex.rxjava2:rxandroid:$rx_android_version"
@@ -63,6 +63,12 @@ dependencies {
 //    LifeCycle
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_compiler"
+
+//     Room
+    kapt "android.arch.persistence.room:compiler:$room_version"
+    implementation "android.arch.persistence.room:runtime:$room_runtime_version"
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
+
 //    LeakCanary
     implementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
 
