@@ -5,13 +5,16 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.myfirstappnrollapp.data.model.Country
-import com.example.myfirstappnrollapp.data.repository.CountryRepository
+import com.example.myfirstappnrollapp.data.repository.CountryRepositoryInterface
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.ResourceSubscriber
 import javax.inject.Inject
 
-class CountryViewModel @Inject constructor(private val countryRepository: CountryRepository, application : Application) : AndroidViewModel(application) {
+class CountryViewModel @Inject constructor(
+    private val countryRepositoryInterface: CountryRepositoryInterface,
+    application: Application
+) : AndroidViewModel(application) {
 
     var countriesResult: MutableLiveData<List<Country>> = MutableLiveData()
     var countriesError: MutableLiveData<String> = MutableLiveData()
@@ -48,7 +51,7 @@ class CountryViewModel @Inject constructor(private val countryRepository: Countr
             }
         }
 
-        countryRepository.getCountries()
+        countryRepositoryInterface.getCountries()
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(resourceSubscriber)

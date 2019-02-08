@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 
 class CountryViewModelFactory @Inject constructor(
-    private val cryptoCurrencyViewModel: CountryViewModel
+    private val countryViewModel: CountryViewModel
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CountryViewModel::class.java)) return cryptoCurrencyViewModel as T
+        if (modelClass.isAssignableFrom(CountryViewModel::class.java)) return countryViewModel as T
         throw IllegalArgumentException("Unknown class name")
     }
 }
