@@ -30,10 +30,6 @@ class CountryRepository @Inject constructor(
     override fun getCountriesFromApi() =
         apiInterface.getCountryNameCurrenciesTopLevelDomainAndCallingCodes()
             .doOnNext {
-                saveCountriesToDatabase(it)
+                countryDao.insertAllCountries(it)
             }!!
-
-    override fun saveCountriesToDatabase(countries: List<Country>) {
-        countryDao.insertAllCountries(countries)
-    }
 }
